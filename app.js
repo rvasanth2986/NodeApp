@@ -20,7 +20,8 @@ const router = express.Router();
 
 // Set up the front-end code
 // We take a request from root (/) and look in the static sub-folder for the HTML, CSS, and front-end JavaScript files.
-app.use('/', express.static('../build'));
+//app.use(express.static('/public'));
+app.use(express.static(path.join(__dirname + '/public')));
 
 // Here, we will call this function for every request. It will write to the console for every request made.
 app.use((req, res, next) => {
@@ -295,7 +296,7 @@ router.post('/metrics', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '/public', 'index.html'));
 });
 
 // Server listens to the port and displays message to console.
